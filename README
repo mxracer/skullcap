@@ -11,3 +11,25 @@ for the help with the kernel source, if I missed you tell me and I'll add you. ;
 
 and the guys at TeamKomin for the help getting me motivated to start. :-)
 
+HOW TO BUILD KERNEL 2.6.32 FOR Captivate
+
+1. Visit http://www.codesourcery.com/, download and install Sourcery G++ Lite 2009q3-68 or 2010.09-51 toolchain for ARM EABI.
+
+2. git clone kernel source the top directory. i.e. your home dir
+
+3. Update the makfile to point to where you installed the toolchain above
+
+4. Run build.sh script in the kernel directory. Useage is ./build.sh captivate to refresh config and ./build.sh noconfig to keep current config
+   the default config used for refresh is ga_aries_config and is correct for this kernel
+
+5. If the kernel is built successfully, you will find following files from the top directory:
+	arch/arm/boot/zImage
+	net/netfilter/xt_TCPMSS.ko
+	drivers/onedram_svn/modemctl/modemctl.ko
+	drivers/onedram_svn/onedram/onedram.ko
+	drivers/onedram_svn/svnet/svnet.ko
+	drivers/bluetooth/bthid/bthid.ko
+	drivers/net/wireless/bcm4329/dhd.ko
+	drivers/scsi/scsi_wait_scan.ko
+	drivers/samsung/vibetonz/vibrator.ko
+
