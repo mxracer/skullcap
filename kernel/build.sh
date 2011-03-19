@@ -63,18 +63,21 @@ cp arch/arm/boot/zImage ../skullcapflash/updates/zImage
 } || { echo "failed to copy zImage"; exit 1; }
 echo " done"
 
+ZIPNAME=skullcap-voodoo-kernel-i897-v$(cat ../kernel/.version)-CWM
+
 echo -n "creating flash zip"
 {
-rm -f ../skullcapflash.zip
+#rm -f ../skullcapflash.zip
 cd ../skullcapflash/
-zip -r ../skullcapflash *
+zip $ZIPNAME -r * 
+mv $ZIPNAME.zip ../$ZIPNAME.zip
 } || { echo "failed to create zip"; exit 1; }
 
 echo -n "copying zip to the phone..."
 {
 cd ..
 echo "kernel version is $(cat kernel/.version)" 
-adb push skullcapflash.zip /sdcard/sgs-kernel-flasher/skullcapflash.zip
+adb push $ZIPNAME.zip /sdcard/sgs-kernel-flasher/$ZIPNAME.zip
 } || { echo "failed to copy zip to phone"; }
 
 END=$(date +%s)
