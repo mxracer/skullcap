@@ -15,8 +15,8 @@ case "$DEVICE" in
 	noconfig)
 		#don't redo config
 		;;
-#	galaxys)
-#		cfg=aries_galaxys_defconfig
+#	captivate_no_debug)
+#		cfg=ga3_eur_defconfig_no_debug
 #		;;
 #	galaxysb)
 #		cfg=aries_galaxysb_defconfig
