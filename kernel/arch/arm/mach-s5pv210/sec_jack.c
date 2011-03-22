@@ -170,7 +170,7 @@ static int jack_type_detect_change(struct work_struct *ignored)
 			adc = s3c_adc_get_adc_data(SEC_HEADSET_ADC_CHANNEL);
 			/*  unstable zone */
 #if !defined(CONFIG_ARIES_NTT)
-			if(adc > 3250)
+			if(adc > 3250 || adc == 0) //SKULLCAP 3-pole headphone is 0
 #else
 			if(adc > 3600)
 #endif
