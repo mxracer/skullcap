@@ -9,6 +9,10 @@ case "$DEVICE" in
 		make clean
 		exit
 		;;
+	mrproper)
+		make mrproper
+		exit
+		;;
 	captivate)
 		cfg=ga3_eur_defconfig
 		;;
