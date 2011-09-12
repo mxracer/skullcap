@@ -35,8 +35,8 @@
 backlightnotification
 samsunglogo
 
-#Ignore the flash update dir
-skullcapflash
+#Ignore the flash update kernel
+skullcapflash/updates/zImage
 
 #
 # Top-level generic files

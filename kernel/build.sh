@@ -40,6 +40,7 @@ make -j $(grep 'processor' /proc/cpuinfo | wc -l) || { echo "Failed to make kern
 
 echo -n "Copying Kernel and Modules to initramfs..."
 {
+[ -d ../9010initramfs/full-uncompressed/lib/modules ] || mkdir ../9010initramfs/full-uncompressed/lib/modules
 #cp drivers/bluetooth/bthid/bthid.ko ../../src/9010initramfs/full-uncompressed/lib/modules/bthid.ko
 cp fs/cifs/cifs.ko ../9010initramfs/full-uncompressed/lib/modules/cifs.ko
 #cp drivers/net/wireless/bcm4329/dhd.ko ../../src/9010initramfs/full-uncompressed/lib/modules/dhd.ko
@@ -77,6 +78,7 @@ echo -n "copying zip to the phone..."
 {
 cd ..
 echo "kernel version is $(cat kernel/.version)" 
+adb shell mkdir /sdcard/sgs-kernel-flasher >/dev/null
 adb push $ZIPNAME.zip /sdcard/sgs-kernel-flasher/$ZIPNAME.zip
 } || { echo "failed to copy zip to phone"; }
 
