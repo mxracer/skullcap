@@ -37,7 +37,7 @@ case "$DEVICE" in
 esac
 
 # Ensure basic initramfs structure is there
-for i in /data /dev /proc /sys /system /voodoo/logs /voodoo/tmp; do
+for i in /data /dev /proc /sys /system /voodoo/logs /voodoo/tmp /voodoo/tmp/mnt /voodoo/tmp/sdcard; do
 	if [ ! -d ../9010initramfs/full-uncompressed$i ]; then
 		mkdir ../9010initramfs/full-uncompressed$i
 	fi
@@ -47,9 +47,12 @@ done
 echo "Using config ${cfg}"
 
 make ${cfg}  || { echo "Failed to make config"; exit 1; }
-make -j $(grep 'processor' /proc/cpuinfo | wc -l) || { echo "Failed to make kernel"; exit 1; }
 
-echo -n "Copying Kernel and Modules to initramfs..."
+echo "Making Kernel Modules..."
+make modules -j $(grep 'processor' /proc/cpuinfo | wc -l) || { echo "Failed to make kernel modules"; exit 1; }
+echo "done."
+
+echo -n "Copying Kernel Modules to initramfs..."
 {
 #cp drivers/bluetooth/bthid/bthid.ko ../9010initramfs/full-uncompressed/lib/modules/bthid.ko
 cp fs/cifs/cifs.ko ../9010initramfs/full-uncompressed/lib/modules/cifs.ko
@@ -64,7 +67,11 @@ cp drivers/staging/android/logger.ko ../9010initramfs/full-uncompressed/lib/modu
 #cp drivers/samsung/vibetonz/vibrator.ko ../9010initramfs/full-uncompressed/lib/modules/vibrator.ko
 cp drivers/net/tun.ko ../9010initramfs/full-uncompressed/lib/modules/tun.ko
 
-} || { echo "failed to copy kernel and modules"; exit 1; }
+} || { echo "failed to copy kernel modules"; exit 1; }
+echo "done."
+
+echo "Making Kernel Image..."
+make zImage -j $(grep 'processor' /proc/cpuinfo | wc -l) || { echo "Failed to make kernel image"; exit 1; }
 echo "done."
 
 echo -n "copying zImage to flash dir..."
