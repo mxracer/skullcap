@@ -3,6 +3,7 @@
 START=$(date +%s)
 
 DEVICE="$1"
+cfg=
 
 case "$DEVICE" in
 	clean)
@@ -11,6 +12,10 @@ case "$DEVICE" in
 		;;
 	mrproper)
 		make mrproper
+		exit
+		;;
+	distclean)
+		make distclean
 		exit
 		;;
 	captivate)
@@ -44,9 +49,11 @@ for i in /data /dev /proc /sys /system /voodoo/logs /voodoo/tmp /voodoo/tmp/mnt 
 done
 
 #export KBUILD_BUILD_VERSION="1.0.0"
-echo "Using config ${cfg}"
+if [ -n "$cfg" ]; then
+	echo "Using config ${cfg}"
 
-make ${cfg}  || { echo "Failed to make config"; exit 1; }
+	make ${cfg}  || { echo "Failed to make config"; exit 1; }
+fi
 
 echo "Making Kernel Modules..."
 make modules -j $(grep 'processor' /proc/cpuinfo | wc -l) || { echo "Failed to make kernel modules"; exit 1; }

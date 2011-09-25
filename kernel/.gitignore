@@ -1,1 +1,6 @@
 *.ko
+/scripts/kconfig/mconf
+/scripts/kconfig/gconf
+/scripts/kconfig/lkc_defs.h
+/scripts/kconfig/qconf
+/scripts/kconfig/qconf.moc
