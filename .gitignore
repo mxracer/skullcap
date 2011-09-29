@@ -50,19 +50,6 @@ Module.symvers
 !.gitignore
 !.mailmap
 
-#
-# Generated include files
-#
-kernel/include/asm
-kernel/include/asm-arm
-kernel/include/config
-kernel/include/linux/autoconf.h
-kernel/include/linux/compile.h
-kernel/include/linux/version.h
-kernel/include/linux/utsrelease.h
-kernel/include/linux/bounds.h
-kernel/include/generated
-
 # stgit generated dirs
 patches-*
 
@@ -89,30 +76,6 @@ _ori
 
 # final output files
 skullcap-voodoo-kernel-i897-v*-CWM.zip
-
-# other generated files
-/kernel/arch/arm/boot/Image
-/kernel/arch/arm/boot/compressed/vmlinux.lds
-/kernel/arch/arm/boot/zImage
-/kernel/arch/arm/kernel/vmlinux.lds
-/kernel/drivers/char/consolemap_deftbl.c
-/kernel/drivers/char/defkeymap.c
-/kernel/kernel/timeconst.h
-/kernel/lib/crc32table.h
-/kernel/lib/gen_crc32table
-/kernel/scripts/basic/docproc
-/kernel/scripts/basic/fixdep
-/kernel/scripts/basic/hash
-/kernel/scripts/conmakehash
-/kernel/scripts/kallsyms
-/kernel/scripts/kconfig/conf
-/kernel/scripts/kconfig/lex.zconf.c
-/kernel/scripts/kconfig/zconf.hash.c
-/kernel/scripts/kconfig/zconf.tab.c
-/kernel/scripts/mod/elfconfig.h
-/kernel/scripts/mod/mk_elfconfig
-/kernel/scripts/mod/modpost
-/kernel/usr/gen_init_cpio
 
 # compiled kernel modules
 /9010initramfs/full-uncompressed/lib/modules/cifs.ko
