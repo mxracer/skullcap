@@ -14,8 +14,8 @@
 *.o.*
 *.a
 *.s
-*.ko
-*.so
+#*.ko
+#*.so
 *.so.dbg
 *.mod.c
 *.i
@@ -35,8 +35,8 @@
 backlightnotification
 samsunglogo
 
-#Ignore the flash update dir
-skullcapflash
+#Ignore the flash update kernel
+skullcapflash/updates/zImage
 
 #
 # Top-level generic files
@@ -49,19 +49,6 @@ Module.markers
 Module.symvers
 !.gitignore
 !.mailmap
-
-#
-# Generated include files
-#
-include/asm
-include/asm-arm
-include/config
-include/linux/autoconf.h
-include/linux/compile.h
-include/linux/version.h
-include/linux/utsrelease.h
-include/linux/bounds.h
-include/generated
 
 # stgit generated dirs
 patches-*
@@ -86,3 +73,13 @@ GTAGS
 _t32
 _tool
 _ori
+
+# final output files
+skullcap-voodoo-kernel-i897-v*-CWM.zip
+
+# compiled kernel modules
+/9010initramfs/full-uncompressed/lib/modules/cifs.ko
+/9010initramfs/full-uncompressed/lib/modules/ext4.ko
+/9010initramfs/full-uncompressed/lib/modules/jbd2.ko
+/9010initramfs/full-uncompressed/lib/modules/logger.ko
+/9010initramfs/full-uncompressed/lib/modules/tun.ko
